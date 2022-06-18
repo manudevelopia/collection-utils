@@ -12,7 +12,6 @@ class JoinerSpec extends Specification {
 
     def "joining by common should return list of common objects"() {
         given:
-        Function<Item, Long> by = (i) -> ((Item) i).getId();
         Order order = new Order([
                 new Item(1, 'article 1'),
                 new Item(2, 'article 2'),
@@ -25,9 +24,10 @@ class JoinerSpec extends Specification {
                 new Item(3, 'article 3'),
                 new Item(5, 'article 5'),
         ])
+        Function<Item, Long> by = (i) -> i.getId()
 
         when:
-        def result = Joiner.common(order.getItems(), stock.getItems(), by)
+        List<Item> result = Joiner.common(order.getItems(), stock.getItems(), by)
 
         then:
         with(result) {

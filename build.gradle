@@ -1,7 +1,7 @@
 
 plugins {
     id 'groovy'
-    id 'application'
+    id 'java-library'
 }
 
 repositories {
@@ -9,13 +9,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.codehaus.groovy:groovy:3.0.8'
-    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
-    testImplementation 'junit:junit:4.13.1'
-}
-
-application {
-    mainClass = 'info.developia.collection.utils.App'
+    testImplementation 'org.codehaus.groovy:groovy:3.0.11'
+    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 tasks.named('test') {
