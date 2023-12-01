@@ -2,11 +2,11 @@ package info.developia.util;
 
 public class Launcher {
     public static void main(String[] args) {
-//        var none = Trys.of(() -> print("Hello world!!"));
+//        var none = Try.of(() -> print("Hello world!!"));
 //        print("var none:" + none.toString());
-//        var str = Trys.of(() -> "Hello world!!");
+//        var str = Try.of(() -> "Hello world!!");
 //        print("var str:" + str.toString());
-//        var error = Trys.of(() -> print("hola".split("_")[9]));
+//        var error = Try.of(() -> print("hola".split("_")[9]));
 //        print("var error:" + error.toString());
 //        print("var error fallback:" + error.getOr("salvados!!!"));
 //        try {
@@ -17,13 +17,13 @@ public class Launcher {
 //        }
 //
 //
-//        var result = Trys.of(() -> "Hello world!!");
+//        var result = Try.of(() -> "Hello world!!");
 //        print("var result:" + result.get());
 //        print("var result fail:" + result.get().fail());
 
-//        var resultAsterisk = Trys.ofs(() -> queryDataBase("select * from database"));
+//        var resultAsterisk = Try.ofs(() -> queryDataBase("select * from database"));
 //        print("Result * is " + resultAsterisk.get());
-//        var resultD_Id = Trys.ofs(() -> queryDataBase("select d_id from database")).get();
+//        var resultD_Id = Try.ofs(() -> queryDataBase("select d_id from database")).get();
 //        print("Result d_id is " + resultD_Id);
 //
 //        var recoveredResult = resultAsterisk.recover((a) -> "recovered result" + a);

@@ -4,18 +4,18 @@ import spock.lang.Specification
 
 import java.util.function.Supplier
 
-class TrysSpec extends Specification {
+class TrySpec extends Specification {
 
     def "should return None on runnable function"() {
         when:
-        var result = Trys.of(() -> print("Hello world!!"))
+        var result = Try.of(() -> print("Hello world!!"))
         then:
         result instanceof Result.None
     }
 
     def "should return Failure with division by zero on runnable function"() {
         when:
-        var result = Trys.of(() -> print("Calculate ${1 / 0}"))
+        var result = Try.of(() -> print("Calculate ${1 / 0}"))
         then:
         result instanceof Result.Failure
         result.fail().getMessage() == "Division by zero"
@@ -26,7 +26,7 @@ class TrysSpec extends Specification {
         String message = "Hello world!!"
         Supplier<String> supplier = { return message }
         when:
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         then:
         result instanceof Result.Success
         result.get() == message
@@ -36,7 +36,7 @@ class TrysSpec extends Specification {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         when:
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         then:
         result instanceof Result.Failure
         result.fail().getMessage() == "Division by zero"
@@ -48,7 +48,7 @@ class TrysSpec extends Specification {
         String fallbackMessage = "fallback value"
         Supplier<String> supplier = { return message }
         when:
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         then:
         result instanceof Result.Success
         result.getOr(fallbackMessage) == message
@@ -59,7 +59,7 @@ class TrysSpec extends Specification {
         String fallbackValue = "fallback value"
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         when:
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         then:
         result instanceof Result.Failure
         result.getOr(fallbackValue) == fallbackValue
@@ -68,7 +68,7 @@ class TrysSpec extends Specification {
     def "should return Failure and fails with provided exception on supplier function"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         when:
         result.getOrFailWith(new RuntimeException("Opps, it's an error!"))
         then:
@@ -80,7 +80,7 @@ class TrysSpec extends Specification {
     def "should return Success and value even with provided exception on supplier function"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 + 1}" }
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         when:
         result.getOrFailWith(new RuntimeException("Opps, it's an error!"))
         then:
@@ -91,7 +91,7 @@ class TrysSpec extends Specification {
     def "should return Failure and provided exception on supplier function"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         when:
         result.getOrFailWith(new RuntimeException("Opps, it's an error!"))
         then:
@@ -103,7 +103,7 @@ class TrysSpec extends Specification {
     def "should return Failure and provided exception message on supplier function"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
-        var result = Trys.of(supplier)
+        var result = Try.of(supplier)
         when:
         result.getOrFailWith((error) -> new RuntimeException("Opps, it's an error! " + error))
         then:

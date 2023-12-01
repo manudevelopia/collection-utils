@@ -2,7 +2,7 @@ package info.developia.util;
 
 import java.util.function.Supplier;
 
-public class Trys {
+public class Try {
 
     public static <T> Result<T> of(final Runnable o) {
         try {
@@ -109,22 +109,22 @@ public class Trys {
 //
 ////        public <U> TryWrap<U> flatMap(
 ////                Function<? super T, ? extends Try<U>> f) {
-////            return new TryWrap<>(Trys.flatMap(tryValue, f));
+////            return new TryWrap<>(Try.flatMap(tryValue, f));
 ////        }
 ////
 ////        public <U> TryWrap<U> map(
 ////                Function<? super T, ? extends U> f) {
-////            return new TryWrap<>(Trys.map(tryValue, f));
+////            return new TryWrap<>(Try.map(tryValue, f));
 ////        }
 //
 //        public TryWrap<T> recoverWith(
 //                Function<? super Throwable, ? extends Try<T>> f) {
-//            return new TryWrap<>(Trys.recoverWith(tryValue, f));
+//            return new TryWrap<>(Try.recoverWith(tryValue, f));
 //        }
 //
 //        public TryWrap<T> recover(
 //                Function<? super Throwable, ? extends T> f) {
-//            return new TryWrap<>(Trys.recover(tryValue, f));
+//            return new TryWrap<>(Try.recover(tryValue, f));
 //        }
     }
 }
