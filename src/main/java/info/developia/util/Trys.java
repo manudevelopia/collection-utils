@@ -13,14 +13,12 @@ public class Trys {
         }
     }
 
-    public static <T> ResultWrap<T> of(final Supplier<T> o) {
+    public static <T> Result<T> of(final Supplier<T> o) {
         try {
             final var value = o.get();
-//            return new Result.Success<>(value);
-            return new ResultWrap<>(new Result.Success<>(value));
+            return new Result.Success<>(value);
         } catch (Throwable error) {
-//            return new Result.Failure<>(error);
-            return new ResultWrap<>(new Result.Failure<>(error));
+            return new Result.Failure<>(error);
         }
     }
 
