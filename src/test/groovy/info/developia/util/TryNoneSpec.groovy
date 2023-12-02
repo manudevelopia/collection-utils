@@ -32,9 +32,8 @@ class TryNoneSpec extends Specification {
     def "should return exception with provided exception including exception cause on message"() {
         given:
         def exceptionMessage = "Ops, it's an error! "
-        var result = Try.of(() -> print("Calculate ${1 / 0}"))
         when:
-        result.orFailWith((error) -> new RuntimeException("$exceptionMessage $error"))
+        Try.of(() -> print("Calculate ${1 / 0}")).orFailWith((error) -> new RuntimeException("$exceptionMessage $error"))
         then:
         def exception = thrown(RuntimeException)
         exception.getMessage() == "$exceptionMessage java.lang.ArithmeticException: Division by zero"
