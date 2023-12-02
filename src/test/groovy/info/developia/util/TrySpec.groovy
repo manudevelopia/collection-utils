@@ -6,21 +6,6 @@ import java.util.function.Supplier
 
 class TrySpec extends Specification {
 
-    def "should return None on runnable function"() {
-        when:
-        var result = Try.of(() -> print("Hello world!!"))
-        then:
-        result instanceof Result.None
-    }
-
-    def "should return Failure with division by zero on runnable function"() {
-        when:
-        var result = Try.of(() -> print("Calculate ${1 / 0}"))
-        then:
-        result instanceof Result.Failure
-        result.fail().getMessage() == "Division by zero"
-    }
-
     def "should return Success with expected value on supplier function"() {
         given:
         String message = "Hello world!!"

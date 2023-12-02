@@ -4,12 +4,12 @@ import java.util.function.Supplier;
 
 public class Try {
 
-    public static <T> Result<T> of(final Runnable o) {
+    public static None of(final Runnable o) {
         try {
             o.run();
-            return new Result.None<>();
+            return new None.Nothing();
         } catch (Throwable e) {
-            return new Result.Failure<>(e);
+            return new None.Failure(e);
         }
     }
 
