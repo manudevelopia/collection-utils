@@ -3,9 +3,10 @@ package info.developia.util;
 import java.util.function.Function;
 
 public sealed interface Result<A> {
+    record Success<A>(A value) implements Result<A> {
+    }
 
-    default A get() {
-        return ((Success<A>) this).value();
+    record Failure<A>(Throwable error) implements Result<A> {
     }
 
     default A getOr(A fallbackValue) {
@@ -35,12 +36,7 @@ public sealed interface Result<A> {
         return this.get();
     }
 
-    record Success<A>(A value) implements Result<A> {
-    }
-
-    record Failure<A>(Throwable error) implements Result<A> {
-    }
-
-    record None<A>() implements Result<A> {
+    private A get() {
+        return ((Success<A>) this).value();
     }
 }

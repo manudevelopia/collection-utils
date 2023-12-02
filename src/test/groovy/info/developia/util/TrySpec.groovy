@@ -6,7 +6,7 @@ import java.util.function.Supplier
 
 class TrySpec extends Specification {
 
-    def "should return Success with expected value on supplier function"() {
+    def "should return Success with expected value"() {
         given:
         String message = "Hello world!!"
         Supplier<String> supplier = { return message }
@@ -17,7 +17,7 @@ class TrySpec extends Specification {
         result.get() == message
     }
 
-    def "should return Failure with division by zero on supplier function"() {
+    def "should return Failure with division by zero"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         when:
@@ -27,7 +27,7 @@ class TrySpec extends Specification {
         result.fail().getMessage() == "Division by zero"
     }
 
-    def "should return Success with expected value even with fallback on supplier function"() {
+    def "should return Success with expected value even with fallback"() {
         given:
         String message = "Hello world!!"
         String fallbackMessage = "fallback value"
@@ -39,7 +39,7 @@ class TrySpec extends Specification {
         result.getOr(fallbackMessage) == message
     }
 
-    def "should return Failure and fallback value with division by zero on supplier function"() {
+    def "should return Failure and fallback value with division by zero"() {
         given:
         String fallbackValue = "fallback value"
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
@@ -50,7 +50,7 @@ class TrySpec extends Specification {
         result.getOr(fallbackValue) == fallbackValue
     }
 
-    def "should return Failure and fails with provided exception on supplier function"() {
+    def "should return Failure and fails with provided exception"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         var result = Try.of(supplier)
@@ -62,7 +62,7 @@ class TrySpec extends Specification {
         exception.getMessage() == "Opps, it's an error!"
     }
 
-    def "should return Success and value even with provided exception on supplier function"() {
+    def "should return Success and value even with provided exception"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 + 1}" }
         var result = Try.of(supplier)
@@ -73,7 +73,7 @@ class TrySpec extends Specification {
         noExceptionThrown()
     }
 
-    def "should return Failure and provided exception on supplier function"() {
+    def "should return Failure and provided exception"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         var result = Try.of(supplier)
@@ -85,7 +85,7 @@ class TrySpec extends Specification {
         exception.getMessage() == "Opps, it's an error!"
     }
 
-    def "should return Failure and provided exception message on supplier function"() {
+    def "should return Failure and provided exception message"() {
         given:
         Supplier<String> supplier = { return "Calculate ${1 / 0}" }
         var result = Try.of(supplier)
