@@ -1,19 +1,30 @@
 
 plugins {
-    id 'groovy'
     id 'java-library'
+    id 'maven-publish'
+    id 'groovy'
 }
+
+description = "Developia Utils library"
+group = 'info.developia.lib'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.codehaus.groovy:groovy:3.0.11'
-    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
-    testImplementation 'junit:junit:4.13.2'
+testing {
+    suites {
+        test {
+            useSpock('2.2-groovy-3.0')
+        }
+    }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
