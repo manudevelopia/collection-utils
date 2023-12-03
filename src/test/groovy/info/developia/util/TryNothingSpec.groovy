@@ -2,21 +2,21 @@ package info.developia.util
 
 import spock.lang.Specification
 
-class TryNoneSpec extends Specification {
+class TryNothingSpec extends Specification {
 
     def "should return None"() {
         when:
         var result = Try.of(() -> print("Hello world!!"))
         then:
-        result instanceof None.Nothing
+        result instanceof Nothing.None
     }
 
     def "should return Failure with division by zero message"() {
         when:
         def result = Try.of(() -> print("Calculate ${1 / 0}"))
         then:
-        result instanceof None.Failure
-        (result as None.Failure).error().getMessage() == "Division by zero"
+        result instanceof Nothing.Failure
+        (result as Nothing.Failure).error().getMessage() == "Division by zero"
     }
 
     def "should return exception with custom message"() {

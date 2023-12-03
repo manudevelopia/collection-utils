@@ -2,11 +2,11 @@ package info.developia.util;
 
 import java.util.function.Function;
 
-public interface None {
-    record Nothing() implements None {
+public sealed interface Nothing {
+    record None() implements Nothing {
     }
 
-    record Failure(Throwable error) implements None {
+    record Failure(Throwable error) implements Nothing {
     }
 
     default void orFail(RuntimeException exception) {

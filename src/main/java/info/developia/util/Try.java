@@ -4,12 +4,12 @@ import java.util.function.Supplier;
 
 public class Try {
 
-    public static None of(final Runnable o) {
+    public static Nothing of(final Runnable o) {
         try {
             o.run();
-            return new None.Nothing();
+            return new Nothing.None();
         } catch (Throwable e) {
-            return new None.Failure(e);
+            return new Nothing.Failure(e);
         }
     }
 
@@ -105,26 +105,24 @@ public class Try {
             return ((Result.Success<T>) tryValue).value();
         }
 
-
-//
-////        public <U> TryWrap<U> flatMap(
-////                Function<? super T, ? extends Try<U>> f) {
-////            return new TryWrap<>(Try.flatMap(tryValue, f));
-////        }
-////
-////        public <U> TryWrap<U> map(
-////                Function<? super T, ? extends U> f) {
-////            return new TryWrap<>(Try.map(tryValue, f));
-////        }
-//
-//        public TryWrap<T> recoverWith(
-//                Function<? super Throwable, ? extends Try<T>> f) {
-//            return new TryWrap<>(Try.recoverWith(tryValue, f));
+//        public <U> ResultWrap<U> flatMap(
+//                Function<? super T, ? extends Try<U>> f) {
+//            return new ResultWrap<>(Try.flatMap(tryValue, f));
 //        }
 //
-//        public TryWrap<T> recover(
+//        public <U> ResultWrap<U> map(
+//                Function<? super T, ? extends U> f) {
+//            return new ResultWrap<>(Try.map(tryValue, f));
+//        }
+
+//        public ResultWrap<T> recoverWith(
+//                Function<? super Throwable, ? extends Try<T>> f) {
+//            return new ResultWrap<>(Try.recoverWith(tryValue, f));
+//        }
+//
+//        public ResultWrap<T> recover(
 //                Function<? super Throwable, ? extends T> f) {
-//            return new TryWrap<>(Try.recover(tryValue, f));
+//            return new ResultWrap<>(Try.recover(tryValue, f));
 //        }
     }
 }
