@@ -39,4 +39,27 @@ public sealed interface Result<A> {
     private A get() {
         return ((Success<A>) this).value();
     }
+
+    default <U> Result<U> map(Function<A, U> f) {
+        return flatMap(this, s -> Try.of(() -> f.apply(s)));
+    }
+
+    private <U> Result<U> flatMap(Result<A> from, Function<A, Result<U>> f) {
+        if (from instanceof Result.Success<A> success) {
+            return executeF(f, success.value);
+        }
+        return new Failure<>(this.fail());
+    }
+
+    private <U> Result<U> executeF(final Function<A, Result<U>> f, final A value) {
+        try {
+            return f.apply(value);
+        } catch (Throwable e) {
+            return failed(e);
+        }
+    }
+
+    private <U> Result<U> failed(final Throwable error) {
+        return new Result.Failure<>(error);
+    }
 }

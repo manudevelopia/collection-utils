@@ -39,6 +39,18 @@ class TrySpec extends Specification {
         result.getOr(fallbackMessage) == message
     }
 
+    def "should return Success with mapped value"() {
+        given:
+        String message = "Hello world!!"
+        String fallbackMessage = "fallback value"
+        Supplier<String> supplier = { return message }
+        when:
+        var result = Try.of(supplier).map(value -> value.toUpperCase())
+        then:
+        result instanceof Result.Success
+        result.getOr(fallbackMessage) == message.toUpperCase()
+    }
+
     def "should return Failure and fallback value with division by zero"() {
         given:
         String fallbackValue = "fallback value"
