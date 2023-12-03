@@ -1,4 +1,4 @@
-package info.developia.collection.utils.join;
+package info.developia.lib.join;
 
 import java.util.Arrays;
 import java.util.List;

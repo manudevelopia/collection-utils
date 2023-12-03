@@ -1,4 +1,4 @@
-package info.developia.types;
+package info.developia.lib.types;
 
 public class Range<T> {
     private final T from;

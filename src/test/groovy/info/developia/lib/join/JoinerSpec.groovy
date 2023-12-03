@@ -1,9 +1,10 @@
-package info.developia.collection.utils.join
+package info.developia.lib.join
 
 
 import info.developia.collection.utils.join.fixture.shop.Item
 import info.developia.collection.utils.join.fixture.shop.Order
 import info.developia.collection.utils.join.fixture.warehouse.Stock
+import info.developia.lib.join.Joiner
 import spock.lang.Specification
 
 import java.util.function.Function

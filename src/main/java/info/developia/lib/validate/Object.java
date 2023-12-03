@@ -1,4 +1,4 @@
-package info.developia.validate;
+package info.developia.lib.validate;
 
 public class Object {
 

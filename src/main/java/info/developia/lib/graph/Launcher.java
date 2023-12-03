@@ -1,4 +1,4 @@
-package info.developia.graph;
+package info.developia.lib.graph;
 
 public class Launcher {
 

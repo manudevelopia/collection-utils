@@ -1,5 +1,7 @@
-package info.developia.util
+package info.developia.lib.util
 
+import info.developia.lib.util.Nothing
+import info.developia.lib.util.Try
 import spock.lang.Specification
 
 class TryNothingSpec extends Specification {

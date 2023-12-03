@@ -1,4 +1,4 @@
-package info.developia.util;
+package info.developia.lib.util;
 
 public class Launcher {
     public static void main(String[] args) {

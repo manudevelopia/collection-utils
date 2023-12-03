@@ -1,4 +1,4 @@
-package info.developia.graph;
+package info.developia.lib.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;

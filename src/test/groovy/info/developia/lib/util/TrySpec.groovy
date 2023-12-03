@@ -1,5 +1,7 @@
-package info.developia.util
+package info.developia.lib.util
 
+import info.developia.lib.util.Result
+import info.developia.lib.util.Try
 import spock.lang.Specification
 
 import java.util.function.Supplier

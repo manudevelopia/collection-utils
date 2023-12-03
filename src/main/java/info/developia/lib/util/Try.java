@@ -1,6 +1,5 @@
-package info.developia.util;
+package info.developia.lib.util;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Try {

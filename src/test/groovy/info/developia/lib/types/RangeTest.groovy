@@ -1,6 +1,6 @@
-package info.developia.types
+package info.developia.lib.types
 
-
+import info.developia.lib.types.Range
 import spock.lang.Specification
 
 class RangeTest extends Specification {

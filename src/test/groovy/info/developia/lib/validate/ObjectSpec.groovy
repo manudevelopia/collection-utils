@@ -1,5 +1,6 @@
-package info.developia.validate
+package info.developia.lib.validate
 
+import info.developia.lib.validate.Object
 import spock.lang.Specification
 
 class ObjectSpec extends Specification {
