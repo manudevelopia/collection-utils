@@ -23,15 +23,15 @@ public sealed interface Result<A> {
         throw exception;
     }
 
-    default Throwable fail() {
-        if (this instanceof Result.Failure<A> e)
-            return e.error();
+    private Throwable fail() {
+        if (this instanceof Result.Failure<A> failure)
+            return failure.error();
         else return null;
     }
 
     default A getOrFailWith(Function<Throwable, RuntimeException> exception) {
-        if (this instanceof Result.Failure<A> e) {
-            throw exception.apply(e.error());
+        if (this instanceof Result.Failure<A> failure) {
+            throw exception.apply(failure.error());
         }
         return this.get();
     }
