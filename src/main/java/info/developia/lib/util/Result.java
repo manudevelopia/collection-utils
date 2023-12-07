@@ -3,11 +3,8 @@ package info.developia.lib.util;
 import java.util.function.Function;
 
 public sealed interface Result<A> {
-    record Success<A>(A value) implements Result<A> {
-    }
-
-    record Failure<A>(Throwable error) implements Result<A> {
-    }
+    record Success<A>(A value) implements Result<A> { }
+    record Failure<A>(Throwable error) implements Result<A> { }
 
     default A getOr(A fallbackValue) {
         if (this instanceof Success<A> success) {
@@ -21,12 +18,6 @@ public sealed interface Result<A> {
             return success.value();
         }
         throw exception;
-    }
-
-    private Throwable fail() {
-        if (this instanceof Result.Failure<A> failure)
-            return failure.error();
-        else return null;
     }
 
     default A getOrFailWith(Function<Throwable, RuntimeException> exception) {
@@ -48,7 +39,13 @@ public sealed interface Result<A> {
         if (from instanceof Result.Success<A> success) {
             return executeF(f, success.value);
         }
-        return new Failure<>(this.fail());
+        return failed(this.fail());
+    }
+
+    private Throwable fail() {
+        if (this instanceof Result.Failure<A> failure)
+            return failure.error();
+        else return null;
     }
 
     private <U> Result<U> executeF(final Function<A, Result<U>> f, final A value) {
